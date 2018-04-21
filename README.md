@@ -5,7 +5,8 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 #### [Sample Projects](#sample-projects)
 #### [Articles & Documentation](#sample-projects)
-#### [People to Follow](#people-to-follow)
+#### [Videos](#videos)
+#### [People to Follow](#notable-people-to-follow)
 
 ## Sample Projects
 
@@ -24,7 +25,13 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 [ReactiveUI Twitter](https://twitter.com/reactivexui)
 
-## People to Follow
+[101 Rx Samples](http://rxwiki.wikidot.com/101samples)
+
+## Videos
+
+[Why You Should Be Building Better Mobile Apps with Reactive Programming – Michael Stonis](https://www.youtube.com/watch?v=DYEbUF4xs1Q)
+
+## Notable People to Follow
 
 Paul Betts [@paulcbetts](https://twitter.com/paulcbetts)
 * [Github](https://github.com/paulcbetts)
