@@ -33,9 +33,7 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 ## Tips & Best Practices - ReactiveUI
 
-#### The best way to use Service Locator
-
-**Tip:** Inject service via constructor
+### Inject Service Locator interface via constructor
 
 ```
 public SuspensionHost(ISuspensionDriver driver = null)
@@ -48,7 +46,7 @@ public SuspensionHost(ISuspensionDriver driver = null)
 
 **Source:** [https://stackoverflow.com/a/26924067/5984310](https://stackoverflow.com/a/26924067/5984310)
 
-**Tip:** Call async operations in the View constructor, rather than the ViewModel constructor.
+### Call async operations in the View constructor, rather than the ViewModel constructor.
 
 ```
 this.WhenAnyValue(x => x.ViewModel.LoadItems)
@@ -64,6 +62,7 @@ this.WhenAnyValue(x => x.ViewModel.LoadItems)
 
 Paul Betts [@paulcbetts](https://twitter.com/paulcbetts)
 * [Github](https://github.com/paulcbetts)
+* [Book: Programming Reactive Extensions and LINQ](http://disq.us/url?url=http%3A%2F%2Fjliberty.me%2F2lYAZb8%3AI-DqcbqqiSnKie2L8J8U2hBCoS8&cuid=3716375)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:5728+[system.reactive])
 * [Stack Overflow - ReactiveUI](https://stackoverflow.com/search?q=user:5728+[reactiveui])
 
@@ -74,6 +73,7 @@ Lee Campbell [@LeeRyanCampbell](https://twitter.com/leeryancampbell)
 
 Kent Boogaart [@kent_boogaart](https://twitter.com/kent_boogaart)
 * [Blog](https://kent-boogaart.com/blog)
+* [Book: You, I, and ReactiveUI](http://reactiveui-in-depth.launchrock.com/) (pre-order)
 * [Github](https://github.com/kentcb)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:5380+[system.reactive])
 
