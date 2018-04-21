@@ -17,15 +17,11 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 [Reactive Examples with Xamarin Forms by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
 
-## Articles & Documentation
+## Articles, Documentation, & Resources
 
 [IntroToRx](http://www.introtorx.com)
 
-[ReactiveUI](https://reactiveui.net)
-
-[ReactiveUI Slack](https://reactivex.slack.com/messages/reactiveui/)
-
-[ReactiveUI Twitter](https://twitter.com/reactivexui)
+[ReactiveUI Docs](https://reactiveui.net)
 
 [101 Rx Samples](http://rxwiki.wikidot.com/101samples)
 
@@ -52,6 +48,10 @@ Kent Boogaart [@kent_boogaart](https://twitter.com/kent_boogaart)
 
 Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:3970148+[system.reactive])
+
+[ReactiveUI Slack](https://reactivex.slack.com/messages/reactiveui/)
+
+[ReactiveUI Twitter](https://twitter.com/reactivexui)
 
 [Stack Overflow Top Users for System.Reactive](https://stackoverflow.com/tags/system.reactive/topusers)
 
