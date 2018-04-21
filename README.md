@@ -15,7 +15,7 @@ A collection of links and snippets to resources, samples, answers, people, video
 ### Rx.Net & ReactiveUI
 [WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch)
 
-[TheEightBot/Reactive-Examples](https://github.com/TheEightBot/Reactive-Examples)
+[Reactive Examples with Xamarin Forms by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
 
 ## Articles & Documentation
 
