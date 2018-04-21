@@ -25,9 +25,40 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 [101 Rx Samples](http://rxwiki.wikidot.com/101samples)
 
+[Custom Routing in ReactiveUI](https://kent-boogaart.com/blog/custom-routing-in-reactiveui)
+
 ## Videos
 
 [Why You Should Be Building Better Mobile Apps with Reactive Programming – Michael Stonis](https://www.youtube.com/watch?v=DYEbUF4xs1Q)
+
+## Tips & Best Practices - ReactiveUI
+
+#### The best way to use Service Locator
+
+**Tip:** Inject service via constructor
+
+```
+public SuspensionHost(ISuspensionDriver driver = null)
+{
+    driver = driver ?? Locator.Current.GetService<ISuspensionDriver>();
+}
+```
+
+**Explanation:** This uses a Service Located interface for the default interface, but only if the caller didn't give an explicit one in the constructor. Far more straightforward to test in a unit test runner than trying to construct a sham IoC container, but still falls back to a default implementation at runtime.
+
+**Source:** [https://stackoverflow.com/a/26924067/5984310](https://stackoverflow.com/a/26924067/5984310)
+
+**Tip:** Call async operations in the View constructor, rather than the ViewModel constructor.
+
+```
+this.WhenAnyValue(x => x.ViewModel.LoadItems)
+    .SelectMany(x => x.ExecuteAsync())
+    .Subscribe();
+```
+
+**Explanation:** Invoking async operations in the ViewModel constructor means that your ViewModel class becomes more difficult to test, because you always have to mock out the effects of calling LoadItems, even if the thing you are testing is unrelated.
+
+**Source:** [https://codereview.stackexchange.com/a/74793](https://codereview.stackexchange.com/a/74793)
 
 ## Notable People to Follow
 
