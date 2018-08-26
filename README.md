@@ -88,6 +88,24 @@ Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 
 [Stack Overflow Top Users for ReactiveUI](https://stackoverflow.com/tags/reactiveui/topusers)
 
+## ReactiveUI Glossary
+
+**RoutedViewHost:**
+
+**WhenActivated:** allows you to specify the things that should occur when a view or view model is activated and deactivated; requries that our view implements IActivatable; Typically, you don't need to worry about disposing of the disposable returned by WhenActivated. Views tend to deactivate naturally as a consequence of users navigating through your application and ReactiveUI's default IActivationForViewFetcher implementations.
+
+**IActivatable:** think of it as IActivatableView; implemented by IViewFor; tag interface (no methods to implement)
+
+**ISupportsActivation:** think of it as IActivatableViewModel; requires that the IViewFor invokes WhenActivated; can test view model activation and deactivation by calling Activate and Deactivate; implementing this interface more than once in a view model class hierarchy will result in view model activation failing to work correctly
+
+**ViewModelActivator:** essentially a sink in which WhenActivated will register the blocks of activation logic provided by your view model
+
+**IActivationForViewFetcher:** implements GetAffinityForView and GetActivationForView
+
+**GetAffinityForView:** method of IActivationForViewFetcher; tells ReactiveUI how confident you are that your implementation of IActivationForViewFetcher can provide activation information for a given view; higher numbers returned by this method trump lower numbers returned by other implementations
+
+**GetActivationForView:** method of IActivationForViewFetcher; returns IObservable<bool> that ticks true when the view is activated and false when the view is deactivated
+
 ## Contributing
 
 No contribution guidelines, at the moment. Just make a pull request if you have something to contribute, and we'll go from there.
