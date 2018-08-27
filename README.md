@@ -6,13 +6,18 @@ A collection of links and snippets to resources, samples, answers, people, video
 #### [Sample Projects](#sample-projects)
 #### [Articles & Documentation](#sample-projects)
 #### [Videos](#videos)
+#### [Tips & Best Practices - ReactiveUI](#tips--best-practices---reactiveui)
 #### [People to Follow](#notable-people-to-follow)
+#### [ReactiveUI Glossary](reactiveui-glossary)
 
 ## Sample Projects
 
 ### Rx.Net
 
 ### Rx.Net & ReactiveUI
+
+[Sample code for the book "You, I, and ReactiveUI"](https://github.com/kentcb/YouIandReactiveUI)
+
 [WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch)
 
 [Reactive Examples with Xamarin Forms by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
@@ -60,7 +65,7 @@ this.WhenAnyValue(x => x.ViewModel.LoadItems)
 
 ### When should I bother disposing of IDisposable objects?
 
-1)
+1) No need
 
 ```
 public MyView()
@@ -73,7 +78,29 @@ public MyView()
 
 No need to unsubscribe here because it doesn't prevent the view from being garbage collected. You're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself.
 
-2)
+2) Do dispose
+
+```
+public MyViewModel()
+{
+    SomeService.SomePipeline
+        .Subscribe(...);
+}
+```
+
+3) No need
+
+```
+public MyViewModel()
+{
+    SomeService.SomePipelineModelingAsynchrony
+        .Subscribe(...);
+}
+```
+
+Pipelines modeling asynchrony can be relied upon to complete, and thus the subscription will be disposed of automatically via OnComplete (or OnError).
+
+4) Do dispose
 
 ```
 public MyView()
@@ -84,9 +111,9 @@ public MyView()
 }
 ```
 
-**Should dispose of the subscription:** Now you're saying "attach to PropertyChanged on _this_ and tell me when the ViewModel property changes, then attach to PropertyChanged on _that_ (the view model) and tell me when SomeProperty changes." This implies the view model has a reference back to the view, which needs to be cleaned up or else the view model will keep the view alive.
+Now you're saying "attach to PropertyChanged on _this_ and tell me when the ViewModel property changes, then attach to PropertyChanged on _that_ (the view model) and tell me when SomeProperty changes." This implies the view model has a reference back to the view, which needs to be cleaned up or else the view model will keep the view alive.
 
-3) Performance tip
+5) Performance tip
 
 ```
 public MyView()
