@@ -58,6 +58,53 @@ this.WhenAnyValue(x => x.ViewModel.LoadItems)
 
 **Source:** [https://codereview.stackexchange.com/a/74793](https://codereview.stackexchange.com/a/74793)
 
+### When should I bother disposing of IDisposable objects?
+
+1)
+
+```
+public MyView()
+{
+    this.WhenAnyValue(x => x.ViewModel)
+        .[do some stuff]
+        .Subscribe();
+}
+```
+
+No need to unsubscribe here because it doesn't prevent the view from being garbage collected. You're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself.
+
+2)
+
+```
+public MyView()
+{
+    this.WhenAnyValue(x => x.ViewModel.SomeProperty)
+        .[do some stuff]
+        .Subscribe();
+}
+```
+
+**Should dispose of the subscription:** Now you're saying "attach to PropertyChanged on _this_ and tell me when the ViewModel property changes, then attach to PropertyChanged on _that_ (the view model) and tell me when SomeProperty changes." This implies the view model has a reference back to the view, which needs to be cleaned up or else the view model will keep the view alive.
+
+3) Performance tip
+
+```
+public MyView()
+{
+    this.WhenAnyValue(x => x.ViewModel)
+        .Where(x => x != null)
+        .Do(PopulateFromViewModel)
+        .Subscribe();
+}
+
+private void PopulateFromViewModel(MyViewModel vm)
+{
+    // Assign values from vm to controls
+}
+```
+
+More efficient than binding to properties. If your ViewModel properties don't change over time, definitely use this pattern.
+
 ## Notable People to Follow
 
 Paul Betts [@paulcbetts](https://twitter.com/paulcbetts)
