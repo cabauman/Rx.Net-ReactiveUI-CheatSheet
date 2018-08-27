@@ -90,7 +90,7 @@ Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 
 ## ReactiveUI Glossary
 
-**RoutedViewHost:**
+#### WhenActivated
 
 **WhenActivated:** allows you to specify the things that should occur when a view or view model is activated and deactivated; requries that our view implements IActivatable; Typically, you don't need to worry about disposing of the disposable returned by WhenActivated. Views tend to deactivate naturally as a consequence of users navigating through your application and ReactiveUI's default IActivationForViewFetcher implementations.
 
@@ -105,6 +105,16 @@ Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 **GetAffinityForView:** method of IActivationForViewFetcher; tells ReactiveUI how confident you are that your implementation of IActivationForViewFetcher can provide activation information for a given view; higher numbers returned by this method trump lower numbers returned by other implementations
 
 **GetActivationForView:** method of IActivationForViewFetcher; returns IObservable<bool> that ticks true when the view is activated and false when the view is deactivated
+    
+#### NAVIGATION
+
+**RoutingState:** NavigationStack, Navigate (ReactiveCommand), NavigateBack (ReactiveCommand), NavigateAndReset (ReactiveCommand)
+
+**IScreen:** Router (RoutingState); root of a navigation stack; despite the name, its views don't _have to_ occupy the whole screen
+
+**IRoutableViewModel:** UrlPathSegment (string), HostScreen (IScreen)
+
+**RoutedViewHost:** platform-specific; monitors an instance of RoutingState, responding to any changes in the navigation stack by creating and embedding the appropriate view
 
 ## Contributing
 
