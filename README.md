@@ -65,18 +65,18 @@ this.WhenAnyValue(x => x.ViewModel.LoadItems)
 
 ### When should I bother disposing of IDisposable objects?
 
-1) No need
+1) Do dispose
 
 ```
 public MyView()
 {
     this.WhenAnyValue(x => x.ViewModel)
-        .[do some stuff]
+        .Do(PopulateFromViewModel)
         .Subscribe();
 }
 ```
 
-No need to unsubscribe here because it doesn't prevent the view from being garbage collected. You're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself.
+This one is tricky. Disposing of this subscription is a must _if_ developing for a XAML-based platform such as Xamarin.Forms, WPF, or UWP. This is because "there's no non-leaky way to observe a dependencyProperty. (quoting Paul Betts)," which is exaclty what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For a non-XAML platform, such as Xamarin.Android and Xamarin.iOS, there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
 
 2) Do dispose
 
@@ -147,7 +147,7 @@ Lee Campbell [@LeeRyanCampbell](https://twitter.com/leeryancampbell)
 
 Kent Boogaart [@kent_boogaart](https://twitter.com/kent_boogaart)
 * [Blog](https://kent-boogaart.com/blog)
-* [Book: You, I, and ReactiveUI](http://reactiveui-in-depth.launchrock.com/) (pre-order)
+* [Book: You, I, and ReactiveUI](https://kent-boogaart.com/you-i-and-reactiveui/)
 * [Github](https://github.com/kentcb)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:5380+[system.reactive])
 
@@ -164,7 +164,7 @@ Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 
 ## ReactiveUI Glossary
 
-#### WhenActivated
+_WhenActivated_
 
 **WhenActivated:** allows you to specify the things that should occur when a view or view model is activated and deactivated; requries that our view implements IActivatable; Typically, you don't need to worry about disposing of the disposable returned by WhenActivated. Views tend to deactivate naturally as a consequence of users navigating through your application and ReactiveUI's default IActivationForViewFetcher implementations.
 
@@ -180,7 +180,7 @@ Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 
 **GetActivationForView:** method of IActivationForViewFetcher; returns IObservable<bool> that ticks true when the view is activated and false when the view is deactivated
     
-#### NAVIGATION
+_NAVIGATION_
 
 **RoutingState:** NavigationStack, Navigate (ReactiveCommand), NavigateBack (ReactiveCommand), NavigateAndReset (ReactiveCommand)
 
