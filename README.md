@@ -65,7 +65,22 @@ this.WhenAnyValue(x => x.ViewModel.LoadItems)
 
 ### When should I bother disposing of IDisposable objects?
 
-1) Do dispose
+1) No need
+
+```
+public MyViewModel()
+{
+    MyReactiveCommand
+        .Execute()
+        .Subscribe(...);
+}
+```
+
+Quote by Kent Boogart (one of the ReactiveUI maintainers):
+
+> When the execution of a ReactiveCommand completes, all observers are auto-unsubscribed anyway. Generally, subscriptions to pipelines that have a finite lifetime (eg. via a timeout) need not be disposed manually. Disposing of such a subscription is about as useful as disposing of a MemoryStream.
+
+2) Do dispose
 
 ```
 public MyView()
@@ -76,9 +91,9 @@ public MyView()
 }
 ```
 
-This one is tricky. Disposing of this subscription is a must _if_ developing for a XAML-based platform such as Xamarin.Forms, WPF, or UWP. This is because "there's no non-leaky way to observe a dependencyProperty. (quoting Paul Betts)," which is exaclty what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For a non-XAML platform, such as Xamarin.Android and Xamarin.iOS, there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
+This one is tricky. Disposing of this subscription is a must _if_ developing for a XAML-based platform such as Xamarin.Forms, WPF, or UWP. This is because "there's no non-leaky way to observe a dependencyProperty. (quoting Paul Betts)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For a non-XAML platform, such as Xamarin.Android and Xamarin.iOS, there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
 
-2) Do dispose
+3) Do dispose
 
 ```
 public MyViewModel()
@@ -88,7 +103,9 @@ public MyViewModel()
 }
 ```
 
-3) No need
+Services commonly have a longer lifetime than view models, especially in the case of singletons and global application variables. Therefore, it's vital that these kinds of subscriptions are disposed of.
+
+4) No need
 
 ```
 public MyViewModel()
@@ -100,28 +117,33 @@ public MyViewModel()
 
 Pipelines modeling asynchrony can be relied upon to complete, and thus the subscription will be disposed of automatically via OnComplete (or OnError).
 
-4) Do dispose
+5) Do dispose
 
 ```
 public MyView()
 {
     this.WhenAnyValue(x => x.ViewModel.SomeProperty)
-        .[do some stuff]
+        .Do(AssignValueToViewControl)
         .Subscribe();
 }
 ```
 
 Now you're saying "attach to PropertyChanged on _this_ and tell me when the ViewModel property changes, then attach to PropertyChanged on _that_ (the view model) and tell me when SomeProperty changes." This implies the view model has a reference back to the view, which needs to be cleaned up or else the view model will keep the view alive.
 
-5) Performance tip
+6) Performance tip
 
 ```
 public MyView()
 {
-    this.WhenAnyValue(x => x.ViewModel)
-        .Where(x => x != null)
-        .Do(PopulateFromViewModel)
-        .Subscribe();
+    this.WhenActivated(
+        disposables =>
+        {
+            this.WhenAnyValue(x => x.ViewModel)
+                .Where(x => x != null)
+                .Do(PopulateFromViewModel)
+                .Subscribe()
+                .DisposeWith(disposables);
+        });
 }
 
 private void PopulateFromViewModel(MyViewModel vm)
@@ -130,7 +152,22 @@ private void PopulateFromViewModel(MyViewModel vm)
 }
 ```
 
-More efficient than binding to properties. If your ViewModel properties don't change over time, definitely use this pattern.
+More efficient than binding to properties. If your ViewModel properties don't change over time, definitely use this pattern. The _WhenActivated_ part is important for XAML-based platforms (as mentioned in case 2) since it will handle disposing of the subscription every time the view is deactivated.
+
+7) No need
+
+```
+// Should I dispose of the IDisposable that WhenActivated returns?
+this.WhenActivated(
+    disposables =>
+    {
+        ...
+    })
+```
+
+Quote by Kent Boogart:
+
+> If you're using WhenActivated in a view, when do you dispose of the disposable that it returns? You'd have to store it in a local field and make the view disposable. But then who disposes of the view? You'd need platform hooks to know when an appropriate time to dispose it is - not a trivial matter if that view is reused in virtualization scenarios. In addition to this, I have found that reactive code in VMs in particular tends to juggle a lot of disposables. Storing all those disposables away and attempting disposal tends to clutter the code and force the VM itself to be disposable, further confusing matters. Perf is another factor to consider, particularly on Android.
 
 ## Notable People to Follow
 
