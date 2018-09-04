@@ -1,8 +1,9 @@
-We need 4 classes:
-1. A view model derived from `ReactiveObject`
+We need 5 classes:
+1. A view model derived from `ReactiveObject` for the Activity
+2. A view model derived from `ReactiveObject` for a list item
 2. An Activity derived from `ReactiveAppCompatActivity<MainViewModel>`
-3. An adapter derived from `ReactiveRecyclerViewAdapter<MyObject, ObservableCollection<MyObject>>`
-4. A view holder derived from `ReactiveRecyclerViewViewHolder<MyObject>`
+3. An adapter derived from `ReactiveRecyclerViewAdapter<MyListItemViewModel, ObservableCollection<MyListItemViewModel>>`
+4. A view holder derived from `ReactiveRecyclerViewViewHolder<MyListItemViewModel>`
 
 And we need 2 XML layout files:
 1. An activity that contains a RecyclerView
@@ -16,15 +17,15 @@ public class MainViewModel : ReactiveObject
 
     public MainViewModel()
     {
-        MyList = new ObservableCollection<MyObject>();
+        MyList = new ObservableCollection<MyListItemViewModel>();
         MyList.AddRange(
-            new MyObject[]
+            new MyListItemViewModel[]
             {
-                new MyObject() { MyText = "1" },
-                new MyObject() { MyText = "2" },
-                new MyObject() { MyText = "3" },
-                new MyObject() { MyText = "4" },
-                new MyObject() { MyText = "5" },
+                new MyListItemViewModel() { MyText = "1" },
+                new MyListItemViewModel() { MyText = "2" },
+                new MyListItemViewModel() { MyText = "3" },
+                new MyListItemViewModel() { MyText = "4" },
+                new MyListItemViewModel() { MyText = "5" },
             });
             
         var clickedNoti = this
@@ -39,7 +40,7 @@ public class MainViewModel : ReactiveObject
             .Merge(clickedNoti, longClickedNoti);
     }
 
-    public ObservableCollection<MyObject> MyList { get; }
+    public ObservableCollection<MyListItemViewModel> MyList { get; }
     
     public IObservable<string> DisplayNotification { get; }
     
@@ -53,6 +54,22 @@ public class MainViewModel : ReactiveObject
     {
         get => _itemClicked;
         set => this.RaiseAndSetIfChanged(ref _itemLongClicked, value);
+    }
+}
+```
+
+....
+
+```csharp
+// MyListItemViewModel.cs
+public class MyListItemViewModel : ReactiveObject
+{
+    private string _myText;
+
+    public string MyText
+    {
+        get { return _myText; }
+        set { this.RaiseAndSetIfChanged(ref _myText, value); }
     }
 }
 ```
@@ -123,14 +140,14 @@ public class MainActivity : ReactiveAppCompatActivity<MainViewModel>
 ...
 
 ```csharp
-public class MyRecyclerViewAdapter : ReactiveRecyclerViewAdapter<MyObject, ObservableCollection<MyObject>>
+public class MyRecyclerViewAdapter : ReactiveRecyclerViewAdapter<MyListItemViewModel, ObservableCollection<MyListItemViewModel>>
 {
-    public MyRecyclerViewAdapter(ObservableCollection<MyObject> backingList)
+    public MyRecyclerViewAdapter(ObservableCollection<MyListItemViewModel> backingList)
         : base(backingList)
     {
     }
 
-    public override ReactiveRecyclerViewViewHolder<MyObject> OnCreateReactiveViewHolder(ViewGroup parent, int viewType)
+    public override ReactiveRecyclerViewViewHolder<MyListItemViewModel> OnCreateReactiveViewHolder(ViewGroup parent, int viewType)
     {
         View itemView = LayoutInflater
             .From(parent.Context)
@@ -146,7 +163,7 @@ public class MyRecyclerViewAdapter : ReactiveRecyclerViewAdapter<MyObject, Obser
 ...
 
 ```csharp
-public class MyRecyclerViewHolder : ReactiveRecyclerViewViewHolder<MyObject>
+public class MyRecyclerViewHolder : ReactiveRecyclerViewViewHolder<MyListItemViewModel>
 {
   public MyRecyclerViewHolder(View view)
       : base(view)
