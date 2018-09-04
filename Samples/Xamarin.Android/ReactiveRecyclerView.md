@@ -1,7 +1,8 @@
 ```csharp
 public class MainViewModel : ReactiveObject
 {
-    private Subject<string> _displayNotification;
+    private IObservable<int> _itemClicked;
+    private IObservable<int> _itemLongClicked;
 
     public MainViewModel()
     {
@@ -9,37 +10,35 @@ public class MainViewModel : ReactiveObject
         MyList.AddRange(
             new MyObject[]
             {
-                new MyObject() { MyText = "A" },
-                new MyObject() { MyText = "B" },
-                new MyObject() { MyText = "C" },
-                new MyObject() { MyText = "D" },
-                new MyObject() { MyText = "E" },
-                new MyObject() { MyText = "F" },
-                new MyObject() { MyText = "G" },
-                new MyObject() { MyText = "H" },
+                new MyObject() { MyText = "1" },
+                new MyObject() { MyText = "2" },
+                new MyObject() { MyText = "3" },
+                new MyObject() { MyText = "4" },
+                new MyObject() { MyText = "5" },
             });
-
-        this
-            .WhenAnyObservable(vm => vm.ItemClicked)
-            .Subscribe(
-                index =>
-                {
-                    _displayNotification.OnNext($"Clicked item # {index}.");
-                });
+            
+        var clickedNoti = this
+            .WhenAnyObservable(vm => vm.ItemLongClicked)
+            .Select(index => $"Clicked item # {index}.");
+            
+        var longClickedNoti = this
+            .WhenAnyObservable(vm => vm.ItemLongClicked)
+            .Select(index => $"Long-clicked item # {index}.");
+            
+        DisplayNotification = Observable
+            .Merge(clickedNoti, longClickedNoti);
     }
 
     public ObservableCollection<MyObject> MyList { get; }
     
-    public IObservable<string> DisplayNotification => _displayNotification.AsObservable();
-
-    private IObservable<int> _itemClicked;
+    public IObservable<string> DisplayNotification { get; }
+    
     public IObservable<int> ItemClicked
     {
         get => _itemClicked;
         set => this.RaiseAndSetIfChanged(ref _itemClicked, value);
     }
 
-    private IObservable<int> _itemLongClicked;
     public IObservable<int> ItemLongClicked
     {
         get => _itemClicked;
@@ -69,22 +68,27 @@ public class MainActivity : ReactiveAppCompatActivity<MainViewModel>
         Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
         SetSupportActionBar(toolbar);
 
-        _recyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerView);
+        _recyclerView = FindViewById<RecyclerView>(Resource.Id.RecyclerView);
+        _layoutManager = new LinearLayoutManager(this);
+        _recyclerView.SetLayoutManager(_layoutManager);
         _adapter = new MyRecyclerViewAdapter(ViewModel.MyList);
         _recyclerView.SetAdapter(_adapter);
 
         ViewModel.ItemClicked = _adapter.ItemClicked;
-
-        _layoutManager = new LinearLayoutManager(this);
-        _recyclerView.SetLayoutManager(_layoutManager);
+        ViewModel.ItemLongClicked = _adapter.ItemLongClicked;
         
-        ViewModel
-            .DisplayClickNotification
-            .Subscribe(
-                text =>
-                {
-                    Toast.MakeText(this, text, ToastLength.Short).Show();
-                });
+        this.WhenActivated(
+            disposables =>
+            {
+                ViewModel
+                    .DisplayNotification
+                    .Subscribe(
+                        text =>
+                        {
+                            Toast.MakeText(this, text, ToastLength.Short).Show();
+                        })
+                    .DisposeWith(disposables);
+            });
     }
 }
 ```
@@ -99,7 +103,7 @@ public class MainActivity : ReactiveAppCompatActivity<MainViewModel>
   android:layout_height="match_parent">
 
   <android.support.v7.widget.RecyclerView
-    android:id="@+id/recyclerView"
+    android:id="@+id/RecyclerView"
     android:layout_width="match_parent"
     android:layout_height="match_parent" />
 
@@ -111,7 +115,7 @@ public class MainActivity : ReactiveAppCompatActivity<MainViewModel>
 ```csharp
 public class MyRecyclerViewAdapter : ReactiveRecyclerViewAdapter<MyObject, ObservableCollection<MyObject>>
 {
-    public MyRecyclerViewAdapter2(ObservableCollection<MyObject> backingList)
+    public MyRecyclerViewAdapter(ObservableCollection<MyObject> backingList)
         : base(backingList)
     {
     }
