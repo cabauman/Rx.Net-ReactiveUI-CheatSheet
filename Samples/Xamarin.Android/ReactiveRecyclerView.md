@@ -1,3 +1,13 @@
+We need 4 classes:
+1. A view model derived from `ReactiveObject`
+2. An Activity derived from `ReactiveAppCompatActivity<MainViewModel>`
+3. An adapter derived from `ReactiveRecyclerViewAdapter<MyObject, ObservableCollection<MyObject>>`
+4. A view holder derived from `ReactiveRecyclerViewViewHolder<MyObject>`
+
+And we need 2 XML layout files:
+1. An activity that contains a RecyclerView
+2. A view holder that contains list item controls
+
 ```csharp
 public class MainViewModel : ReactiveObject
 {
