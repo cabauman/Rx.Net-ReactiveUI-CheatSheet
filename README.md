@@ -91,7 +91,7 @@ public MyView()
 }
 ```
 
-This one is tricky. Disposing of this subscription is a must _if_ developing for a XAML-based platform such as Xamarin.Forms, WPF, or UWP. This is because "there's no non-leaky way to observe a dependencyProperty. (quoting Paul Betts)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For a non-XAML platform, such as Xamarin.Android and Xamarin.iOS, there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
+This one is tricky. Disposing of this subscription is a must _if_ developing for a dependency property-based platform such as WPF or UWP. This is because "there's no non-leaky way to observe a dependency property. (quoting Paul Betts)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For other platforms such as Xamarin.Forms, Xamarin.Android, and Xamarin.iOS there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
 
 3) Do dispose
 
@@ -135,6 +135,7 @@ Now you're saying "attach to PropertyChanged on _this_ and tell me when the View
 ```
 public MyView()
 {
+    // For a dependency property-based platform such as WPF and UWP
     this.WhenActivated(
         disposables =>
         {
@@ -144,6 +145,12 @@ public MyView()
                 .Subscribe()
                 .DisposeWith(disposables);
         });
+        
+        // For other platforms it can be simplified to the following
+        this.WhenAnyValue(x => x.ViewModel)
+            .Where(x => x != null)
+            .Do(PopulateFromViewModel)
+            .Subscribe()
 }
 
 private void PopulateFromViewModel(MyViewModel vm)
@@ -152,7 +159,7 @@ private void PopulateFromViewModel(MyViewModel vm)
 }
 ```
 
-More efficient than binding to properties. If your ViewModel properties don't change over time, definitely use this pattern. The _WhenActivated_ part is important for XAML-based platforms (as mentioned in case 2) since it will handle disposing of the subscription every time the view is deactivated.
+More efficient than binding to properties. If your ViewModel properties don't change over time, definitely use this pattern. The _WhenActivated_ part is important for dependency property-based platforms (as mentioned in case 2) since it will handle disposing of the subscription every time the view is deactivated.
 
 7) No need
 
