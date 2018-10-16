@@ -12,8 +12,6 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 ## Sample Projects
 
-### Rx.Net & ReactiveUI
-
 _Some of these are pretty dated but still have a lot of relevance_
 
 A lot of these are taken from [this thread](https://github.com/reactiveui/ReactiveUI/issues/687), but I find it easier to browse when it's organized by platform, like this.
