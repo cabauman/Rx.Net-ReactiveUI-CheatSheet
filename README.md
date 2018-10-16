@@ -12,15 +12,43 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 ## Sample Projects
 
-### Rx.Net
-
 ### Rx.Net & ReactiveUI
 
-[Sample code for the book "You, I, and ReactiveUI"](https://github.com/kentcb/YouIandReactiveUI)
+_Some of these are pretty dated but still have a lot of relevance_
+
+A lot of these are taken from [this thread](https://github.com/reactiveui/ReactiveUI/issues/687), but I find it easier to browse when it's organized by platform, like this.
+
+### Xamarin.Forms
 
 [WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch)
 
-[Reactive Examples with Xamarin Forms by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
+[Reactive Examples by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
+
+[UnofficialGitterApp](https://github.com/flagbug/UnofficialGitterApp)
+
+[XamarinEvolve2014 - Heavily commented demo app by Paul Betts](https://github.com/paulcbetts/XamarinEvolve2014)
+
+### Android
+
+[Burger ingredient streams demo with blog post](https://github.com/JonDouglas/BeingReactive)
+
+[Espera.Mobile](https://github.com/flagbug/Espera.Mobile)
+
+### iOS
+
+[CodeHub - uses MVVMCross](https://github.com/CodeHubApp/CodeHub)
+
+[ReactiveTableView & ReactiveCollectionView Demo](https://github.com/cabauman/ReactiveTableViewSource-Sample)
+
+### WPF
+
+[Sample code for the book "You, I, and ReactiveUI"](https://github.com/kentcb/YouIandReactiveUI)
+
+[FirstsStepsRUI with blog post](https://github.com/kondaskondas/FirstsStepsRUI)
+
+### UWP
+
+[RxUI-UWP-Sample](https://github.com/moswald/RxUI-UWP-Sample)
 
 ## Articles, Documentation, & Resources
 
@@ -194,6 +222,11 @@ Kent Boogaart [@kent_boogaart](https://twitter.com/kent_boogaart)
 * [Book: You, I, and ReactiveUI](https://kent-boogaart.com/you-i-and-reactiveui/)
 * [Github](https://github.com/kentcb)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:5380+[system.reactive])
+
+James World [@jamesw0rld](https://twitter.com/jamesw0rld)
+* [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:87427+[system.reactive])
+* [Github](https://github.com/james-world)
+* [Blog](http://www.zerobugbuild.com/)
 
 Dave Sexton [@IDaveSexton](https://twitter.com/idavesexton)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:3970148+[system.reactive])
