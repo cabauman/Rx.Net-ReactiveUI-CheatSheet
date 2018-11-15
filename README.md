@@ -52,6 +52,12 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 [IntroToRx](http://www.introtorx.com)
 
+[RxViz](https://rxviz.com/) - interactive JavaScript with visualizations (I just wish a DotNet version of this existed)
+
+[RxMarbles](http://rxmarbles.com/) - interactive visualizations
+
+[ReactiveX.io](http://reactivex.io/) - Rx hub for all languages
+
 [ReactiveUI Docs](https://reactiveui.net)
 
 [101 Rx Samples](http://rxwiki.wikidot.com/101samples)
