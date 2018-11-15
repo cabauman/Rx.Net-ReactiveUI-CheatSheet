@@ -6,7 +6,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using ReactiveUI;
 
-namespace TTKSCore
+namespace Extensions
 {
     public static class IObservableExtensions
     {
