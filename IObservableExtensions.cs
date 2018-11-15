@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Reactive;
 using System.Reactive.Disposables;
 using System.Reactive.Linq;
@@ -6,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using ReactiveUI;
 
-namespace Extensions
+namespace TTKSCore
 {
     public static class IObservableExtensions
     {
@@ -65,6 +66,7 @@ namespace Extensions
         /// </summary>
         /// <remarks>
         // Credit: Kent Boogaart
+        // https://github.com/kentcb/YouIandReactiveUI
         /// </remarks>
         public static IDisposable SubscribeSafe<T>(
             this IObservable<T> @this,
@@ -99,6 +101,7 @@ namespace Extensions
         /// </summary>
         /// <remarks>
         // Credit: Kent Boogaart
+        // https://github.com/kentcb/YouIandReactiveUI
         /// </remarks>
         public static IDisposable SubscribeSafe<T>(
             this IObservable<T> @this,
@@ -151,7 +154,7 @@ namespace Extensions
         // Credit: James World
         // http://www.zerobugbuild.com/?p=323
         /// </remarks>
-        public static IObservable<T> LimitRate<T>(this IObservable<T> @this, TimeSpan interval)
+        public static IObservable<T> MaxRate<T>(this IObservable<T> @this, TimeSpan interval)
         {
             return @this
                 .Select(
@@ -163,6 +166,31 @@ namespace Extensions
                             .StartWith(x);
                     })
                 .Concat();
+        }
+
+        /// <summary>
+        /// Like TakeWhile, except includes the emitted item that triggered the exit condition.
+        /// </summary>
+        /// <remarks>
+        /// Credit: Someone's answer on Stack Overflow
+        /// </remarks>
+        public static IObservable<T> TakeWhileInclusive<T>(this IObservable<T> @this, Func<T, bool> predicate)
+        {
+            return @this
+                .Publish(x => x.TakeWhile(predicate)
+                .Merge(x.SkipWhile(predicate).Take(1)));
+        }
+
+        /// <summary>
+        /// Buffers items in a stream until the provided predicate is true.
+        /// </summary>
+        /// <remarks>
+        /// Credit: Someone's answer on Stack Overflow
+        /// </remarks>
+        public static IObservable<IList<T>> BufferUntil<T>(this IObservable<T> @this, Func<T, bool> predicate)
+        {
+            var published = @this.Publish().RefCount();
+            return published.Buffer(() => published.Where(predicate));
         }
 
         /// <summary>
