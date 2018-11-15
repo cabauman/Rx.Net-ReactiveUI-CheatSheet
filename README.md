@@ -64,6 +64,8 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 [Custom Routing in ReactiveUI](https://kent-boogaart.com/blog/custom-routing-in-reactiveui)
 
+[Default schedulers for each observable operator](https://stackoverflow.com/a/15396488/5984310)
+
 ## Videos
 
 [Reactive Extensions for .NET Developers with Michael Stonis (November 2018)](https://channel9.msdn.com/Shows/On-NET/Reactive-Extensions-for-NET-Developers?WT.mc_id=ondotnet-channel9-cephilli)
