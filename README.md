@@ -60,6 +60,8 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 ## Videos
 
+[Reactive Extensions for .NET Developers with Michael Stonis (November 2018)](https://channel9.msdn.com/Shows/On-NET/Reactive-Extensions-for-NET-Developers?WT.mc_id=ondotnet-channel9-cephilli)
+
 [Why You Should Be Building Better Mobile Apps with Reactive Programming – Michael Stonis](https://www.youtube.com/watch?v=DYEbUF4xs1Q)
 
 ## Tips & Best Practices - ReactiveUI
