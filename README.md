@@ -3,7 +3,7 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 ## Table of Contents
 
-#### [Sample Projects](#sample-projects)
+#### [Sample Projects](#sample-projects-1)
 #### [Articles & Documentation](#articles-documentation--resources)
 #### [Videos](#videos-1)
 #### [Tips & Best Practices - ReactiveUI](#tips--best-practices---reactiveui-1)
