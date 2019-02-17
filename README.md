@@ -282,11 +282,3 @@ No contribution guidelines, at the moment. Just make a pull request if you have 
 ## Authors
 
 * **Colt Bauman** - *Initial work* - [cabauman](https://github.com/cabauman)
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
-
-## Acknowledgments
-
-TODO
