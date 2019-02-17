@@ -127,7 +127,7 @@ public MyView()
 }
 ```
 
-This one is tricky. Disposing of this subscription is a must _if_ developing for a dependency property-based platform such as WPF or UWP. This is because "there's no non-leaky way to observe a dependency property. (quoting Paul Betts)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For other platforms such as Xamarin.Forms, Xamarin.Android, and Xamarin.iOS there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
+This one is tricky. Disposing of this subscription is a must _if_ developing for a dependency property-based platform such as WPF or UWP. Quoting Paul Betts, this is because "[there's no non-leaky way to observe a dependency property](https://stackoverflow.com/a/22341350/5984310)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For other platforms such as Xamarin.Forms, Xamarin.Android, and Xamarin.iOS there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
 
 3) Do dispose
 
