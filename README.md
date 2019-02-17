@@ -72,6 +72,8 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 [Why You Should Be Building Better Mobile Apps with Reactive Programming – Michael Stonis](https://www.youtube.com/watch?v=DYEbUF4xs1Q)
 
+[UniRx playlist, but also includes intro to Rx theory and operators](https://www.youtube.com/playlist?list=PLKERDLXpXl_gdZ7NAHkAxKf12g3oNjTAc)
+
 ## Tips & Best Practices - ReactiveUI
 
 ### Inject Service Locator interface via constructor
