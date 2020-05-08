@@ -18,8 +18,6 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 ### Xamarin.Forms
 
-[WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch)
-
 [Reactive Examples by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
 
 [UnofficialGitterApp](https://github.com/flagbug/UnofficialGitterApp)
@@ -33,6 +31,8 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 [Espera.Mobile](https://github.com/flagbug/Espera.Mobile)
 
 ### iOS
+
+[WorkoutWotch - Xamarin iOS Video Series](https://github.com/kentcb/WorkoutWotch)
 
 [CodeHub - uses MVVMCross](https://github.com/CodeHubApp/CodeHub)
 
