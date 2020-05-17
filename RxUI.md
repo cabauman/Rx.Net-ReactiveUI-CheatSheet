@@ -3,11 +3,11 @@ A collection of links and snippets to resources, samples, answers, people, video
 
 ## Table of Contents
 
-#### [Sample Projects](#sample-projects)
-#### [Learning Resources](#learning-resources)
-#### [Tips & Best Practices](#tips--best-practices)
-#### [People to Follow](#notable-people-to-follow)
-#### [ReactiveUI Glossary](#reactiveui-glossary)
+#### [Sample Projects](#sample-projects-1)
+#### [Learning Resources](#learning-resources-1)
+#### [Tips & Best Practices](#tips--best-practices-1)
+#### [Notable People to Follow](#notable-people-to-follow-1)
+#### [ReactiveUI Glossary](#reactiveui-glossary-1)
 
 ## Sample Projects
 

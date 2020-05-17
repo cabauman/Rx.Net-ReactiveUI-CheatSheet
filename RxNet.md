@@ -1,17 +1,17 @@
 # Rx.Net CheatSheet
 A collection of links and snippets to resources, samples, answers, people, videos, etc. related to Rx.Net.
 
+_Most of the blogs and videos are pretty dated but the core concepts still apply. The overall public API really hasn't changed much over the years, except for new operators and performance improvements._
+
 ## Table of Contents
 
-#### [Timeline](#timeline)
-#### [Personal Favorites](#personal-favorites)
-#### [Learning Resources](#learning-resources)
-#### [Videos](#videos)
-#### [Tips](#tips)
-#### [Convenient References](#convenient-references)
-#### [Notable People to Follow](#notable-people-to-follow)
-
-_Most of the blogs and videos are pretty dated but the core concepts still apply. The overall public API really hasn't changed much over the years, except for new operators and performance improvements._
+#### [Timeline](#timeline-1)
+#### [Personal Favorites](#personal-favorites-1)
+#### [Learning Resources](#learning-resources-1)
+#### [Videos](#videos-1)
+#### [Tips](#tips-1)
+#### [Convenient References](#convenient-references-1)
+#### [Notable People to Follow](#notable-people-to-follow-1)
 
 ## Timeline
 
@@ -23,12 +23,6 @@ Core Rx team at Microsoft: Erik Meijer, Brian Beckman, Wes Dyer, Bart De Smet, J
 
 [Open Sourced](https://docs.microsoft.com/en-us/archive/blogs/interoperability/ms-open-tech-open-sources-rx-reactive-extensions-a-cure-for-asynchronous-data-streams-in-cloud-programming): 11/06/2012
 
-## Personal Favorites
-
-[IntroToRx](http://www.introtorx.com) - If I had to name a single resource to help someone get started with Rx.Net, it would be this invaluable online book by Lee Campbell. Even after years of reactive programming, I find myself going back time and time again as a reference/reminder of some of the smaller details.
-
-[RxCookbook](https://github.com/LeeCampbell/RxCookbook) - Not surprisingly, Lee Campbell's RxCookbook Github repo is one of my favorite resources for learning how to utilize the power of Rx in common C# application scenarios, such as INotifyPropertyChanged and logging.
-
 *Google searching tip:* Because there are so many languages that have adopted Rx, there's a need to filter the results to dotnet. To achieve this, I always strucutre my query as "C# observable [my specific query]".
 
 ## Learning Resources
@@ -37,9 +31,13 @@ Core Rx team at Microsoft: Erik Meijer, Brian Beckman, Wes Dyer, Bart De Smet, J
 
 [Rx.Net Slack](https://reactivex.slack.com/messages/rxnet/)
 
+[IntroToRx](http://www.introtorx.com) - If I had to name a single resource to help someone get started with Rx.Net, it would be this invaluable online book by Lee Campbell. Even after years of reactive programming, I find myself going back time and time again as a reference/reminder of some of the smaller details.
+
 [Book: Rx.Net in Action](https://livebook.manning.com/book/rx-dot-net-in-action/about-this-book/)
 
 [Book: Programming Reactive Extensions and LINQ](https://www.apress.com/gp/book/9781430237471)
+
+[RxCookbook](https://github.com/LeeCampbell/RxCookbook) - Useful for learning how to utilize the power of Rx in common C# application scenarios, such as INotifyPropertyChanged and logging.
 
 [Bart De Smet Blog](http://blogs.bartdesmet.net/blogs/bart/archive/tags/Rx/default.aspx)
 
