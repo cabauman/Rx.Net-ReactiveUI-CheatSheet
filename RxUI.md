@@ -17,7 +17,7 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 ### Xamarin.Forms
 
-[WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch)
+[WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch) - The accompanying video series, referenced in the README, covers Xamarin iOS Native, but the codebase was later converted to Xamarin Forms to support other platforms.
 
 [Reactive Examples by TheEightBot](https://github.com/TheEightBot/Reactive-Examples)
 
@@ -32,6 +32,8 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 [Espera.Mobile](https://github.com/flagbug/Espera.Mobile)
 
 ### iOS
+
+[WorkoutWotch - Xamarin Forms Video Series](https://github.com/kentcb/WorkoutWotch) - The accompanying video series, referenced in the README, covers Xamarin iOS Native, but the codebase was later converted to Xamarin Forms to support other platforms.
 
 [CodeHub - uses MVVMCross](https://github.com/CodeHubApp/CodeHub)
 
