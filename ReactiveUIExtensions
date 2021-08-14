@@ -3,7 +3,7 @@ using System.Reactive.Linq;
 using ReactiveUI;
 using Splat;
 
-namespace Extensions
+namespace RxCheatsheet
 {
     public static class ReactiveUIExtensions
     {

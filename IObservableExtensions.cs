@@ -7,7 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Threading;
 using ReactiveUI;
 
-namespace TTKSCore
+namespace RxCheatsheet
 {
     public static class IObservableExtensions
     {
