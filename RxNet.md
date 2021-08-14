@@ -23,7 +23,7 @@ Core Rx team at Microsoft: Erik Meijer, Brian Beckman, Wes Dyer, Bart De Smet, J
 
 [Open Sourced](https://docs.microsoft.com/en-us/archive/blogs/interoperability/ms-open-tech-open-sources-rx-reactive-extensions-a-cure-for-asynchronous-data-streams-in-cloud-programming): 11/06/2012
 
-*Google searching tip:* Because there are so many languages that have adopted Rx, there's a need to filter the results to dotnet. To achieve this, I always strucutre my query as "C# observable [my specific query]".
+*Google searching tip:* Because there are so many languages that have adopted Rx, there's a need to filter the results to dotnet. To achieve this, I always structure my query as "C# observable [my specific query]".
 
 ## Learning Resources
 
@@ -89,7 +89,7 @@ Core Rx team at Microsoft: Erik Meijer, Brian Beckman, Wes Dyer, Bart De Smet, J
 > [Lee Campbell](https://stackoverflow.com/a/14460634/5984310): The reason I really don't like Subjects, is that is usually a case of the developer not really having a clear design on the problem. Hack in a subject, poke it here there and everywhere, and then let the poor support dev guess at WTF was going on. When you use the Create/Generate etc methods you are localizing the effects on the sequence. You can see it all in one method and you know no-one else is throwing in a nasty side effect. If I see a subject fields I now have to go looking for all the places in a class it is being used. If some MFer exposes one publicly, then all bets are off, who knows how this sequence is being used! Async/Concurrency/Rx is hard. You don't need to make it harder by allowing side effects and causality programming to spin your head even more.
 
 > [Sergey Aldoukhov](https://stackoverflow.com/q/9299813/5984310): People who frequent the RX forum know that E.Meijer does not like Subjects. While I have a deepest respect to RX creator's opinion, I have been using Subjects quite extensively in multiple projects for a couple of years and haven't had any architectural problem or a bug because of them.<br />
-[Ana Betts](https://stackoverflow.com/a/9301923/5984310): Erik Meijer is thinking in a purely functional way - Subjects are the mutable variables of Rx. So, in general usage he's right - using Subjects is sometimes a way to cop out of Thinking Functionally, and if you use them too much, you're trying to row upstream. However! Subject are extremely useful when you're interfacing with the non-Functional world of .NET. Wrapping an event or callback method? Subjects are great for that. Trying to put an Rx "interface" onto some existing code? Use a Subject!
+[Ani Betts](https://stackoverflow.com/a/9301923/5984310): Erik Meijer is thinking in a purely functional way - Subjects are the mutable variables of Rx. So, in general usage he's right - using Subjects is sometimes a way to cop out of Thinking Functionally, and if you use them too much, you're trying to row upstream. However! Subject are extremely useful when you're interfacing with the non-Functional world of .NET. Wrapping an event or callback method? Subjects are great for that. Trying to put an Rx "interface" onto some existing code? Use a Subject!
 
 > [Bart De Smet](https://stackoverflow.com/a/12049997/5984310): Whenever you need to create an observable out of thin air, Observable.Create should be the first thing to think of. in a lot of cases, there's already a built-in primitive in Rx that does exactly what you need. For example, there's From* factory methods to bridge with existing concepts (such as events, tasks, asynchronous methods, enumerable sequence), some of which using a subject under the covers. For multicasting logic, there's the Publish, Replay, etc. family of operators.
 
@@ -121,7 +121,7 @@ TimeBasedOperations: [Buffer, Delay, DelaySubscription, Generate, Interval, Samp
 
 ## Notable People to Follow
 
-_These are basically the names you'll see over and over again on Stack Overflow, answering Rx.Net questions. I've learned a ton from these guys.
+_These are basically the names you'll see over and over again on Stack Overflow, answering Rx.Net questions. I've learned a ton from these guys._
 
 James World [@jamesw0rld](https://twitter.com/jamesw0rld)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:87427+[system.reactive])
@@ -137,8 +137,8 @@ Shlomo
 Enigmativity
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:259769+[system.reactive])
 
-Paul Betts [@paulcbetts](https://twitter.com/paulcbetts)
-* [Github](https://github.com/paulcbetts)
+Ani Betts [@anaisbetts](https://twitter.com/anaisbetts)
+* [Github](https://github.com/anaisbetts)
 * [Book: Programming Reactive Extensions and LINQ](http://disq.us/url?url=http%3A%2F%2Fjliberty.me%2F2lYAZb8%3AI-DqcbqqiSnKie2L8J8U2hBCoS8&cuid=3716375)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:5728+[system.reactive])
 * [Stack Overflow - ReactiveUI](https://stackoverflow.com/search?q=user:5728+[reactiveui])

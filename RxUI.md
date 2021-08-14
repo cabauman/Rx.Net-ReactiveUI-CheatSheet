@@ -23,7 +23,7 @@ A lot of these are taken from [this thread](https://github.com/reactiveui/Reacti
 
 [UnofficialGitterApp](https://github.com/flagbug/UnofficialGitterApp)
 
-[XamarinEvolve2014 - Heavily commented demo app by Paul Betts](https://github.com/paulcbetts/XamarinEvolve2014)
+[XamarinEvolve2014 - Heavily commented demo app by Ani Betts](https://github.com/anaisbetts/XamarinEvolve2014)
 
 ### Android
 
@@ -122,7 +122,7 @@ public MyView()
 }
 ```
 
-This one is tricky. Disposing of this subscription is a must _if_ developing for a dependency property-based platform such as WPF or UWP. Quoting Paul Betts, this is because "[there's no non-leaky way to observe a dependency property](https://stackoverflow.com/a/22341350/5984310)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For other platforms such as Xamarin.Forms, Xamarin.Android, and Xamarin.iOS there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
+This one is tricky. Disposing of this subscription is a must _if_ developing for a dependency property-based platform such as WPF or UWP. Quoting Ani Betts, this is because "[there's no non-leaky way to observe a dependency property](https://stackoverflow.com/a/22341350/5984310)," which is exactly what the ViewModel property of a ReactiveUserControl is. However, if you happen to know that your ViewModel won't change for the liftime of the view then you can make ViewModel a normal property, eliminating the need to dispose. For other platforms such as Xamarin.Forms, Xamarin.Android, and Xamarin.iOS there's no need to dispose because you're simply monitoring the property (ViewModel) on the view itself, so the subscription is attaching to PropertyChanged on that view. This means the view has a reference to itself and thus, doesn't prevent the it from being garbage collected.
 
 3) Do dispose
 
@@ -209,8 +209,8 @@ Quote by Kent Boogart:
 
 ## Notable People to Follow
 
-Paul Betts [@paulcbetts](https://twitter.com/paulcbetts)
-* [Github](https://github.com/paulcbetts)
+Ani Betts [@anaisbetts](https://twitter.com/anaisbetts)
+* [Github](https://github.com/anaisbetts)
 * [Book: Programming Reactive Extensions and LINQ](http://disq.us/url?url=http%3A%2F%2Fjliberty.me%2F2lYAZb8%3AI-DqcbqqiSnKie2L8J8U2hBCoS8&cuid=3716375)
 * [Stack Overflow - System.Reactive](https://stackoverflow.com/search?q=user:5728+[system.reactive])
 * [Stack Overflow - ReactiveUI](https://stackoverflow.com/search?q=user:5728+[reactiveui])
