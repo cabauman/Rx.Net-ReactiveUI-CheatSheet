@@ -1,4 +1,4 @@
-#ReactiveUI CheatSheet
+# ReactiveUI CheatSheet
 A collection of links and snippets to resources, samples, answers, people, videos, etc. related to ReactiveUI.
 
 ## Table of Contents
