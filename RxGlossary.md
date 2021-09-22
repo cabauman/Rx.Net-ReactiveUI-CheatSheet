@@ -1,5 +1,27 @@
 # Rx Glossary
 
+## Observable.FromAsync vs Observable.FromAsync vs Task.ToObservable
+
+- FromAsync starts a new async operation for every subscription.
+- StartAsync and ToObservable require an already running task.
+- ToObservable doesn't support cancellation.
+- FromAsync is basically `Observable.Defer(() => Observable.StartAsync(...))`
+- One use for FromAsync is to control reentrancy for multiple calls to an async method.
+- Concat ensures that there will be no overlapping in the execution of the tasks.
+
+Source: https://github.com/dotnet/reactive/issues/459
+
+## Subscribe overload that accepts a CancellationToken
+
+```
+var cts = new CancellationTokenSource(TimeSpan.FromSeconds(5));
+Observable.Interval(TimeSpan.FromSeconds(0.5))
+    .Subscribe(_ => Console.WriteLine(DateTime.UtcNow), cts.Token);
+Thread.Sleep(10000);
+```
+
+Source: https://stackoverflow.com/a/35367449/5984310
+
 ## Subject.Synchronize
 
 ### Use case: Sharing a subject across multiple threads
@@ -15,6 +37,22 @@ subscription = synchronizedSubject
     .ObserveOn(TaskPoolScheduler.Default)
     .Subscribe(...);
 ```
+
+## Async subscriptions
+
+Subscribers are not supposed to be long running, and therefore don't support execution of long running async methods in the Subscribe handlers. Instead, consider your async method to be a single value observable sequence that takes a value from another sequence. Now you can compose sequences, which is what Rx was designed to do. Otherwise, 1. you break the error model 2. you are mixing async models (rx here, task there).
+
+Source: https://stackoverflow.com/questions/37129159/subscribing-to-observable-sequence-with-async-function
+
+## SerialDisposable
+
+"We only want one sidebar open at a time"
+"Autocomplete should only have one outstanding request in flight"
+"Animate this value from here to there and make sure we cancel an already-running animation if we try to start it again"
+"We only want to show one dialog on-screen at a time"
+"Connect to this websocket but if someone issues another connect() request close the first one"
+
+Source: https://twitter.com/anaisbetts/status/1034168666739200000
 
 ## Observable temperature
 
