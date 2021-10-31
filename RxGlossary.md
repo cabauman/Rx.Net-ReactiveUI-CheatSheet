@@ -77,10 +77,10 @@ A cold observable is in a passive state, like an album waiting to be played.
 
 A type that implements the IObservable<T> interface and IObserver<M> interface is called a subject. This type acts as both an observer and an observable
 
-Subject<T>—Broadcasts every observed notification to all observers.
-AsyncSubject<T>—Represents an asynchronous operation that emits its value upon completion.
-ReplaySubject<T>—Broadcasts notifications for current and future observers.
-BehaviorSubject<T>—Broadcasts notifications and saves the latest value for future observers. When created, it’s initialized with a value that emits until changed.
+Subject<T>: Broadcasts every observed notification to all observers.
+AsyncSubject<T>: Represents an asynchronous operation that emits its value upon completion.
+ReplaySubject<T>: Broadcasts notifications for current and future observers.
+BehaviorSubject<T>: Broadcasts notifications and saves the latest value for future observers. When created, it’s initialized with a value that emits until changed.
 
 ### AsyncSubject
 

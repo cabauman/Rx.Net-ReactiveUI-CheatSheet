@@ -105,20 +105,7 @@ Operators that operate on the entire sequence of items emitted by an Observable
 - Count: count the number of items emitted by the source Observable and emit only this value
 - Max: determine, and emit, the maximum-valued item emitted by an Observable
 - Min: determine, and emit, the minimum-valued item emitted by an Observable
-- Reduce: apply a function to each item emitted by an Observable, sequentially, and emit the final value
-- Sum: calculate the sum of numbers emitted by an Observable and emit this sum
-
-
-## Mathematical and Aggregate Operators
-
-Operators that operate on the entire sequence of items emitted by an Observable
-
-- Average: calculates the average of numbers emitted by an Observable and emits this average
-- Concat: emit the emissions from two or more Observables without interleaving them
-- Count: count the number of items emitted by the source Observable and emit only this value
-- Max: determine, and emit, the maximum-valued item emitted by an Observable
-- Min: determine, and emit, the minimum-valued item emitted by an Observable
-- Aggregate: apply a function to each item emitted by an Observable, sequentially, and emit the final value
+- Aggregate/Reduce: apply a function to each item emitted by an Observable, sequentially, and emit the final value
 - Sum: calculate the sum of numbers emitted by an Observable and emit this sum
 
 
@@ -136,3 +123,10 @@ Operators that help cope with Observables that produce items more rapidly than t
 - Buffer
 - Sample
 - Window
+
+# Flattening Operators 
+
+- Concat: for every Future Result, run them in original order, one at a time
+- Merge: for every Future Result, subscribe ASAP and return results as they come in, even if they're crazy out of order
+- Switch: only care about the newest Future Result, if a new Future Result comes in while the old one is still in-progress, throw it away
+- Exhaust (RsJS): opposite of Switch; only cares about one Future Result at a time and ignores any that comes in the interim
